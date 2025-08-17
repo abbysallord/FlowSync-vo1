@@ -121,6 +121,7 @@
   color: #666;
   line-height: 1.5;
   font-size: 0.9rem;
+  text-align: left;
 }
 
 .task-meta {
@@ -220,7 +221,6 @@
 
   .task-description {
     margin: 8px 0 12px 32px;
-    text-align: left;
   }
 
   .task-meta {
