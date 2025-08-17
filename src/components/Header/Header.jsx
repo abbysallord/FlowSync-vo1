@@ -1,6 +1,6 @@
 import "./Header.css"
 
-export default function Header(){
+function Header(){
     return(
         <header className="header">
             <h1>Task Master</h1>
@@ -8,3 +8,5 @@ export default function Header(){
         </header>
     )
 } 
+
+export default Header

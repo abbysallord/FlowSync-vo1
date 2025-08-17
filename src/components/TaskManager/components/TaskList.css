@@ -1,0 +1,86 @@
+/* src/components/TaskManager/components/TaskList.css */
+.task-list {
+  width: 100%;
+}
+
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.task-list-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.task-count {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.task-count:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(102, 126, 234, 0.4);
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 200px;
+}
+
+.task-list .empty-state {
+  min-height: 250px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+  border: 1px dashed #e1e8ed;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .task-list-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .task-list-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .task-count {
+    align-self: center;
+  }
+
+  .tasks-container {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-list-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .task-count {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .tasks-container {
+    gap: 10px;
+  }
+}

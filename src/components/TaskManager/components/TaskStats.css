@@ -1,0 +1,118 @@
+/* src/components/TaskManager/components/TaskStats.css */
+.task-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e1e8ed;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.stat-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-item:nth-child(1) .stat-number {
+  color: #667eea;
+}
+
+.stat-item:nth-child(2) .stat-number {
+  color: #4CAF50;
+}
+
+.stat-item:nth-child(3) .stat-number {
+  color: #ff9800;
+}
+
+.stat-item:nth-child(4) .stat-number {
+  color: #9c27b0;
+}
+
+.stat-item:nth-child(1):before {
+  background: #667eea;
+}
+
+.stat-item:nth-child(2):before {
+  background: #4CAF50;
+}
+
+.stat-item:nth-child(3):before {
+  background: #ff9800;
+}
+
+.stat-item:nth-child(4):before {
+  background: #9c27b0;
+}
+
+@media (max-width: 1024px) {
+  .task-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-item {
+    padding: 16px 12px;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-item {
+    padding: 12px 8px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}

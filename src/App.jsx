@@ -1,13 +1,17 @@
-import "./App.css"
-import Header from "./components/Header/Header"
+// src/App.jsx
+import './App.css';
+import Header from './components/Header/Header';
+import TaskManager from './components/TaskManager/TaskManager';
 
-export default function App(){
-  return(
+function App() {
+  return (
     <div className="App">
       <Header />
       <main className="main-content">
-        <p>Task Management features coming soon...</p>
+        <TaskManager />
       </main>
     </div>
-  )
+  );
 }
+
+export default App;

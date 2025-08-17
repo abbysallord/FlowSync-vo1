@@ -1,0 +1,127 @@
+/* src/components/UI/Button.css */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.btn:disabled,
+.btn--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn--secondary {
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.btn--success {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn--success:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn--danger {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.btn--danger:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.btn--sm {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  min-height: 32px;
+}
+
+.btn--md {
+  padding: 10px 20px;
+  font-size: 1rem;
+  min-height: 40px;
+}
+
+.btn--lg {
+  padding: 14px 28px;
+  font-size: 1.125rem;
+  min-height: 48px;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .btn--lg {
+    padding: 12px 24px;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+
+  .btn--md {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    min-height: 36px;
+  }
+
+  .btn--sm {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-height: 30px;
+  }
+}

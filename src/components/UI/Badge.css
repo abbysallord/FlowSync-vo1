@@ -1,0 +1,99 @@
+/* src/components/UI/Badge.css */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 16px;
+  white-space: nowrap;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.badge--default {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.badge--primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 1px 3px rgba(102, 126, 234, 0.3);
+}
+
+.badge--success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.badge--danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.badge--warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.badge--high {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  box-shadow: 0 1px 3px rgba(244, 67, 54, 0.3);
+}
+
+.badge--medium {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  box-shadow: 0 1px 3px rgba(255, 152, 0, 0.3);
+}
+
+.badge--low {
+  background: linear-gradient(135deg, #4CAF50 0%, #388e3c 100%);
+  color: white;
+  box-shadow: 0 1px 3px rgba(76, 175, 80, 0.3);
+}
+
+.badge--sm {
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  min-height: 16px;
+}
+
+.badge--md {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  min-height: 20px;
+}
+
+.badge--lg {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  min-height: 24px;
+}
+
+@media (max-width: 768px) {
+  .badge--lg {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    min-height: 22px;
+  }
+
+  .badge--md {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    min-height: 18px;
+  }
+
+  .badge--sm {
+    padding: 2px 4px;
+    font-size: 0.6rem;
+    min-height: 14px;
+  }
+}
