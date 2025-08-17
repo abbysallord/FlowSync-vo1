@@ -8,18 +8,18 @@ import './TaskManager.css';
 function TaskManager() {
 
   // Add to TaskManager
-  const [filter, setFilter] = useState('all'); // all, active, completed
+  // const [filter, setFilter] = useState('all'); // all, active, completed
 
-  const getFilteredTasks = () => {
-    switch (filter) {
-      case 'active':
-        return tasks.filter(task => !task.completed);
-      case 'completed':
-        return tasks.filter(task => task.completed);
-      default:
-        return tasks;
-    }
-  };
+  // const getFilteredTasks = () => {
+  //   switch (filter) {
+  //     case 'active':
+  //       return tasks.filter(task => !task.completed);
+  //     case 'completed':
+  //       return tasks.filter(task => task.completed);
+  //     default:
+  //       return tasks;
+  //   }
+  // };
 
 
   // Real state management starts here

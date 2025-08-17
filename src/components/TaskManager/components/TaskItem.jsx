@@ -43,13 +43,13 @@ function TaskItem({
     setIsEditing(false);
   };
 
-  const handleEditInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // const handleEditInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setEditData(prev => ({
+  //     ...prev,
+  //     [name]: value
+  //   }));
+  // };
 
   const handleDeleteClick = () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
