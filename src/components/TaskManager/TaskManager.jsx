@@ -106,7 +106,7 @@ function TaskManager() {
   return (
     <div className="task-manager">
       <div className="task-manager-header">
-        <h1>FlowSync Task Manager</h1>
+        <h1>Task Manager</h1>
         <TaskStats {...stats} />
       </div>
       
