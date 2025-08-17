@@ -241,3 +241,34 @@
     font-size: 12px;
   }
 }
+
+/* Edit mode styles */
+.task-edit-input,
+.task-edit-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: inherit;
+  font-family: inherit;
+  background: white;
+  margin: 4px 0;
+}
+
+.task-edit-input:focus,
+.task-edit-textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.task-edit-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Edit mode task item styling */
+.task-item.editing {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+  border-left-color: #667eea;
+}

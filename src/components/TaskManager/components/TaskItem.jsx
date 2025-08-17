@@ -10,11 +10,17 @@ function TaskItem({
   onToggle, onUpdate, onDelete 
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editData, setEditData] = useState({ title, description });
+  const [editData, setEditData] = useState({
+    title : title,
+    description : description || ''
+  });
 
-  const handleEdit = () => {
+  const handleEditClick = () => {
     setIsEditing(true);
-    setEditData({ title, description });
+    setEditData({
+      title : title,
+      description : description
+    });
   };
 
   const handleSaveEdit = () => {
@@ -24,12 +30,25 @@ function TaskItem({
         description: editData.description.trim()
       });
       setIsEditing(false);
+    } else {
+      alert('Title cannot be empty')
     }
   };
 
   const handleCancelEdit = () => {
-    setEditData({ title, description });
+    setEditData({
+      title : title,
+      description : description
+    });
     setIsEditing(false);
+  };
+
+  const handleEditInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleDeleteClick = () => {
@@ -114,7 +133,7 @@ function TaskItem({
           </>
         ) : (
           <>
-            <Button variant="ghost" size="sm" onClick={handleEdit}>
+            <Button variant="ghost" size="sm" onClick={handleEditClick}>
               Edit
             </Button>
             <Button variant="ghost" size="sm" onClick={handleDeleteClick}>
