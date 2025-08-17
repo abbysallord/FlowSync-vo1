@@ -4,24 +4,46 @@ import Button from '../../UI/Button';
 import Badge from '../../UI/Badge';
 import './TaskItem.css';
 
+// Update TaskItem to handle real interactions
 function TaskItem({ 
-  id,
-  title, 
-  description, 
-  priority, 
-  completed, 
-  dueDate,
-  onToggle,
-  onDelete,
-  onEdit
+  id, title, description, priority, completed, dueDate, 
+  onToggle, onUpdate, onDelete 
 }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [editData, setEditData] = useState({ title, description });
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditData({ title, description });
+  };
+
+  const handleSaveEdit = () => {
+    if (editData.title.trim()) {
+      onUpdate({
+        title: editData.title.trim(),
+        description: editData.description.trim()
+      });
+      setIsEditing(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditData({ title, description });
+    setIsEditing(false);
+  };
+
+  const handleDeleteClick = () => {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      onDelete();
+    }
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
       month: 'short', 
-      day: 'numeric' 
+      day: 'numeric',
+      year: 'numeric'
     });
   };
 
@@ -39,50 +61,70 @@ function TaskItem({
             <button 
               className={`task-checkbox ${completed ? 'checked' : ''}`}
               onClick={onToggle}
-              aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
             >
               {completed ? '✅' : '⭕'}
             </button>
-            <h3 className="task-title">{title}</h3>
+            
+            {isEditing ? (
+              <input
+                type="text"
+                value={editData.title}
+                onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                className="task-edit-input"
+                autoFocus
+              />
+            ) : (
+              <h3 className="task-title">{title}</h3>
+            )}
           </div>
           
           <div className="task-badges">
-            <Badge variant={priority} text={priority} />
-            {isOverdue() && <Badge variant="danger" text="Overdue" />}
+            <Badge variant={priority} text={priority.toUpperCase()} />
+            {isOverdue() && <Badge variant="danger" text="OVERDUE" />}
           </div>
         </div>
         
-        {description && (
-          <p className="task-description">{description}</p>
+        {isEditing ? (
+          <textarea
+            value={editData.description}
+            onChange={(e) => setEditData({ ...editData, description: e.target.value })}
+            className="task-edit-input"
+            rows="2"
+          />
+        ) : (
+          description && <p className="task-description">{description}</p>
         )}
         
         <div className="task-meta">
-          <span className="due-date">
-            📅 Due {formatDate(dueDate)}
+          <span className={`due-date ${isOverdue() ? 'overdue' : ''}`}>
+            Due: {formatDate(dueDate)}
           </span>
         </div>
       </div>
       
       <div className="task-actions">
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={() => setIsEditing(!isEditing)}
-          aria-label="Edit task"
-        >
-          ✏️
-        </Button>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={onDelete}
-          aria-label="Delete task"
-        >
-          🗑️
-        </Button>
+        {isEditing ? (
+          <>
+            <Button variant="success" size="sm" onClick={handleSaveEdit}>
+              Save
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleCancelEdit}>
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button variant="ghost" size="sm" onClick={handleEdit}>
+              Edit
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleDeleteClick}>
+              Delete
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
 }
 
-export default TaskItem;
+export default TaskItem

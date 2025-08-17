@@ -3,39 +3,60 @@ import TaskItem from './TaskItem';
 import EmptyState from '../../UI/EmptyState';
 import './TaskList.css';
 
-function TaskList({ tasks, onToggleTask, onDeleteTask, onEditTask }) {
+// Update TaskList component to use real props
+function TaskList({ tasks, onToggleTask, onUpdateTask, onDeleteTask }) {
   if (tasks.length === 0) {
     return (
       <EmptyState 
-        icon="🎯"
+        icon="📋"
         title="No tasks yet"
-        description="Add your first task to get started!"
+        description="Create your first task to get started with FlowSync!"
       />
     );
   }
 
+  const activeTasks = tasks.filter(task => !task.completed);
+  const completedTasks = tasks.filter(task => task.completed);
+
   return (
     <div className="task-list">
       <div className="task-list-header">
-        <h2>📋 Tasks</h2>
+        <h2>Your Tasks</h2>
         <span className="task-count">
-          {tasks.filter(task => !task.completed).length} active
+          {activeTasks.length} active
         </span>
       </div>
       
       <div className="tasks-container">
-        {tasks.map(task => (
+        {/* Active tasks first */}
+        {activeTasks.map(task => (
           <TaskItem
             key={task.id}
             {...task}
             onToggle={() => onToggleTask(task.id)}
+            onUpdate={(updates) => onUpdateTask(task.id, updates)}
             onDelete={() => onDeleteTask(task.id)}
-            onEdit={(updates) => onEditTask(task.id, updates)}
           />
         ))}
+        
+        {/* Completed tasks section */}
+        {completedTasks.length > 0 && (
+          <div className="completed-tasks-section">
+            <h3>Completed ({completedTasks.length})</h3>
+            {completedTasks.map(task => (
+              <TaskItem
+                key={task.id}
+                {...task}
+                onToggle={() => onToggleTask(task.id)}
+                onUpdate={(updates) => onUpdateTask(task.id, updates)}
+                onDelete={() => onDeleteTask(task.id)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default TaskList;
+export default TaskList

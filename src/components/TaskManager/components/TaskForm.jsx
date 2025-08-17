@@ -4,6 +4,52 @@ import Button from '../../UI/Button';
 import './TaskForm.css';
 
 function TaskForm({ onAddTask }) {
+
+  // Add to TaskForm component
+  const [errors, setErrors] = useState({});
+
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+    
+    switch (name) {
+      case 'title':
+        if (!value.trim()) {
+          newErrors.title = 'Task title is required';
+        } else if (value.trim().length < 3) {
+          newErrors.title = 'Task title must be at least 3 characters';
+        } else {
+          delete newErrors.title;
+        }
+        break;
+        
+      case 'dueDate':
+        const today = new Date();
+        const selectedDate = new Date(value);
+        if (selectedDate < today) {
+          newErrors.dueDate = 'Due date cannot be in the past';
+        } else {
+          delete newErrors.dueDate;
+        }
+        break;
+        
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Real-time validation
+    validateField(name, value);
+  };
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -12,32 +58,33 @@ function TaskForm({ onAddTask }) {
     dueDate: ''
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
+  // Update the handleSubmit function in TaskForm.jsx
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Validation
     if (!formData.title.trim()) {
       alert('Please enter a task title');
       return;
     }
 
-    const newTask = {
-      id: Date.now(), // Simple ID generation for now
-      ...formData,
-      completed: false,
-      createdAt: new Date().toISOString()
+    if (!formData.dueDate) {
+      alert('Please select a due date');
+      return;
+    }
+
+    // Prepare task data
+    const taskData = {
+      title: formData.title.trim(),
+      description: formData.description.trim(),
+      priority: formData.priority,
+      dueDate: formData.dueDate
     };
 
-    onAddTask(newTask);
+    // Call the parent function to add task
+    onAddTask(taskData);
     
-    // Reset form
+    // Reset form and collapse
     setFormData({
       title: '',
       description: '',
@@ -46,7 +93,11 @@ function TaskForm({ onAddTask }) {
     });
     
     setIsExpanded(false);
+    
+    // Success feedback
+    console.log('Task submitted successfully:', taskData);
   };
+
 
   const handleCancel = () => {
     setFormData({

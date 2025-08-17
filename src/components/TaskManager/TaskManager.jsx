@@ -6,7 +6,22 @@ import TaskStats from './components/TaskStats';
 import './TaskManager.css';
 
 function TaskManager() {
-  
+
+  // Add to TaskManager
+  const [filter, setFilter] = useState('all'); // all, active, completed
+
+  const getFilteredTasks = () => {
+    switch (filter) {
+      case 'active':
+        return tasks.filter(task => !task.completed);
+      case 'completed':
+        return tasks.filter(task => task.completed);
+      default:
+        return tasks;
+    }
+  };
+
+
   // Real state management starts here
   const [tasks, setTasks] = useState([
     // Initial sample data for testing
@@ -91,7 +106,7 @@ function TaskManager() {
   return (
     <div className="task-manager">
       <div className="task-manager-header">
-        <h1>Task Manager</h1>
+        <h1>FlowSync Task Manager</h1>
         <TaskStats {...stats} />
       </div>
       
